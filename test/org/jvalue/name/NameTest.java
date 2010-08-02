@@ -1,4 +1,4 @@
-package org.jvalue;
+package org.jvalue.name;
 
 /**
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +15,7 @@ package org.jvalue;
  */
 
 import org.junit.*;
+
 import static org.junit.Assert.*;
 import java.util.*;
 
