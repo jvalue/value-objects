@@ -29,6 +29,16 @@ public class SiUnitTest {
 	public void testNoneValue() {
 		assertTrue(new SiUnit(new int[7]).equals(SiUnit.NONE));
 	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public void testSharing() {
+		SiUnit mol = SiUnit.mol;
+		assertSame(mol, SiUnit.mol);
+		assertSame(mol, SiUnit.getValue(mol.getDimensionsCopy()));
+	}
 
 	/**
 	 * 

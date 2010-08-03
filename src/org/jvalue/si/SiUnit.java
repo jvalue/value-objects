@@ -16,6 +16,7 @@ package org.jvalue.si;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.*;
 
 /**
  * An SiUnit represents a unit in the Système international d'unités (former metric system).
@@ -28,20 +29,25 @@ public class SiUnit implements Serializable {
 	private static final long serialVersionUID = -7416307373870496898L;
 	
 	/**
-	 * 
+	 * Cache for sharing value objects.
 	 */
-	public static final SiUnit NONE =   new SiUnit(new int[] {0, 0, 0, 0, 0, 0, 0}); // dimensionless
+	protected static ConcurrentMap<SiUnit, SiUnit> unitCache = new ConcurrentHashMap<SiUnit, SiUnit>();
 	
 	/**
 	 * 
 	 */
-	public static final SiUnit m =   new SiUnit(new int[] {1, 0, 0, 0, 0, 0, 0}); // meter
-	public static final SiUnit kg =  new SiUnit(new int[] {0, 1, 0, 0, 0, 0, 0}); // kilogram
-	public static final SiUnit s =   new SiUnit(new int[] {0, 0, 1, 0, 0, 0, 0}); // second
-	public static final SiUnit A =   new SiUnit(new int[] {0, 0, 0, 1, 0, 0, 0}); // ampere
-	public static final SiUnit K =   new SiUnit(new int[] {0, 0, 0, 0, 1, 0, 0}); // kelvin
-	public static final SiUnit mol = new SiUnit(new int[] {0, 0, 0, 0, 0, 1, 0}); // mole
-	public static final SiUnit cd =  new SiUnit(new int[] {0, 0, 0, 0, 0, 0, 1}); // candela
+	public static final SiUnit NONE = getValue(new int[] {0, 0, 0, 0, 0, 0, 0}); // dimensionless
+	
+	/**
+	 * 
+	 */
+	public static final SiUnit m =   getValue(new int[] {1, 0, 0, 0, 0, 0, 0}); // meter
+	public static final SiUnit kg =  getValue(new int[] {0, 1, 0, 0, 0, 0, 0}); // kilogram
+	public static final SiUnit s =   getValue(new int[] {0, 0, 1, 0, 0, 0, 0}); // second
+	public static final SiUnit A =   getValue(new int[] {0, 0, 0, 1, 0, 0, 0}); // ampere
+	public static final SiUnit K =   getValue(new int[] {0, 0, 0, 0, 1, 0, 0}); // kelvin
+	public static final SiUnit mol = getValue(new int[] {0, 0, 0, 0, 0, 1, 0}); // mole
+	public static final SiUnit cd =  getValue(new int[] {0, 0, 0, 0, 0, 0, 1}); // candela
 	
 	/**
 	 * 
@@ -58,6 +64,21 @@ public class SiUnit implements Serializable {
 	 * 
 	 */
 	protected int[] dimensions = new int[7];
+	
+	/**
+	 * Thread-safe thanks to ConcurrentMap.putIfAbsent()
+	 */
+	public static SiUnit getValue(int[] myDimensions) {
+		SiUnit key = new SiUnit(myDimensions);
+		SiUnit result = unitCache.get(key);
+		if (result == null) {
+			key.dimensions = Arrays.copyOf(myDimensions, 7);
+			unitCache.putIfAbsent(key, key);
+			result = unitCache.get(key);
+		}
+		
+		return result;
+	}
 	
 	/**
 	 * 
@@ -86,6 +107,14 @@ public class SiUnit implements Serializable {
 		}
 		return false;
 	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public int hashCode() {
+		return Arrays.hashCode(dimensions);
+	}
 	
 	/**
 	 * 
@@ -93,6 +122,13 @@ public class SiUnit implements Serializable {
 	public int getDimension(int index) {
 		assert (index >= 0) && (index < 7);
 		return dimensions[index];
+	}
+	
+	/**
+	 * 
+	 */
+	public int[] getDimensionsCopy() {
+		return Arrays.copyOf(dimensions, 7);
 	}
 	
 	/**
