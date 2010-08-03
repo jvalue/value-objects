@@ -26,17 +26,33 @@ public class SiUnit implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -7416307373870496898L;
-
+	
 	/**
 	 * 
 	 */
-	public static final int SI_UNIT_m = 0; // meter
-	public static final int SI_UNIT_kg = 1; // kilogram
-	public static final int SI_UNIT_s = 2; // second
-	public static final int SI_UNIT_A = 3; // ampere
-	public static final int SI_UNIT_K = 4; // kelvin
-	public static final int SI_UNIT_mol = 5; // mole
-	public static final int SI_UNIT_cd = 6; // candela
+	public static final SiUnit NONE =   new SiUnit(new int[] {0, 0, 0, 0, 0, 0, 0}); // dimensionless
+	
+	/**
+	 * 
+	 */
+	public static final SiUnit m =   new SiUnit(new int[] {1, 0, 0, 0, 0, 0, 0}); // meter
+	public static final SiUnit kg =  new SiUnit(new int[] {0, 1, 0, 0, 0, 0, 0}); // kilogram
+	public static final SiUnit s =   new SiUnit(new int[] {0, 0, 1, 0, 0, 0, 0}); // second
+	public static final SiUnit A =   new SiUnit(new int[] {0, 0, 0, 1, 0, 0, 0}); // ampere
+	public static final SiUnit K =   new SiUnit(new int[] {0, 0, 0, 0, 1, 0, 0}); // kelvin
+	public static final SiUnit mol = new SiUnit(new int[] {0, 0, 0, 0, 0, 1, 0}); // mole
+	public static final SiUnit cd =  new SiUnit(new int[] {0, 0, 0, 0, 0, 0, 1}); // candela
+	
+	/**
+	 * 
+	 */
+	public static final int m_INDEX = 0;
+	public static final int kg_INDEX = 1;
+	public static final int s_INDEX = 2;
+	public static final int A_INDEX = 3;
+	public static final int K_INDEX = 4;
+	public static final int mol_INDEX = 5;
+	public static final int cd_INDEX = 6;
 	
 	/**
 	 * 
@@ -48,13 +64,6 @@ public class SiUnit implements Serializable {
 	 */
 	public SiUnit(int[] myDimensions) {
 		dimensions = myDimensions;
-	}
-	
-	/**
-	 * 
-	 */
-	public static SiUnit getDefaultValue() {
-		return new SiUnit();
 	}
 	
 	/**
@@ -79,6 +88,14 @@ public class SiUnit implements Serializable {
 	/**
 	 * 
 	 */
+	public int getDimension(int index) {
+		assert (index >= 0) && (index < 7);
+		return dimensions[index];
+	}
+	
+	/**
+	 * 
+	 */
 	public SiUnit multiply(SiUnit otherSiUnit) {
 		int[] result = new int[7];
 		for (int i = 0; i < 7; i++) {
@@ -98,6 +115,18 @@ public class SiUnit implements Serializable {
 		}
 		
 		return new SiUnit(result);
+	}
+	
+	/**
+	 * 
+	 */
+	public SiUnit power(int toPower) {
+		int[] newDimensions = new int[7];
+		for (int i = 0; i < 7; i++) {
+			newDimensions[i] = dimensions[i] * toPower;
+		}
+		
+		return new SiUnit(newDimensions);
 	}
 	
 }

@@ -15,13 +15,47 @@ package org.jvalue.si;
  */
 
 import org.junit.*;
+import static org.junit.Assert.*;
 
+/**
+ * 
+ */
 public class SiUnitTest {
 
+	/**
+	 * 
+	 */
 	@Test
-	public void testDefaultValue() {
-		SiUnit defaultValue = SiUnit.getDefaultValue();
-		
+	public void testNoneValue() {
+		assertTrue(new SiUnit(new int[7]).equals(SiUnit.NONE));
+	}
+
+	/**
+	 * 
+	 */
+	@Test
+	public void testMultiply() {
+		SiUnit s = SiUnit.s;
+		assertEquals(s.multiply(s), s.power(2));
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public void testDivide() {
+		SiUnit none = SiUnit.NONE;
+		SiUnit s = SiUnit.s;
+		assertSame(none.divide(s).getDimension(SiUnit.s_INDEX), -1);
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public void testPower() {
+		assertTrue(SiUnit.m.power(13).getDimension(SiUnit.m_INDEX) == 13);
+		assertTrue(SiUnit.m.power(-42).getDimension(SiUnit.m_INDEX) == -42);
 	}
 	
 }

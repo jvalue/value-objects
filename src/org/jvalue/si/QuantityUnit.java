@@ -32,8 +32,15 @@ public class QuantityUnit implements Serializable {
 	/**
 	 * 
 	 */
-	protected double number = 0.0;
-	protected SiUnit unit = SiUnit.getDefaultValue();
+	protected double quantity;
+	protected SiUnit unit;
+	
+	/**
+	 * 
+	 */
+	public QuantityUnit(double myQuantity) {
+		this(myQuantity, SiUnit.NONE);
+	}
 	
 	/**
 	 * 
@@ -46,7 +53,7 @@ public class QuantityUnit implements Serializable {
 	 * 
 	 */
 	public QuantityUnit(double myNumber, SiUnit myUnit) {
-		number = myNumber;
+		quantity = myNumber;
 		unit = myUnit;
 	}
 	
@@ -56,17 +63,31 @@ public class QuantityUnit implements Serializable {
 	public boolean equals(Object otherObject) {
 		if ((otherObject != null) && (otherObject instanceof QuantityUnit)) {
 			QuantityUnit qu = (QuantityUnit) otherObject;
-			return (qu.number == number) && unit.equals(qu.unit);
+			return (qu.quantity == quantity) && unit.equals(qu.unit);
 		}
 		return false;
 	}
 	
 	/**
+	 * @return Returns quantity
+	 */
+	public double getQuantity() {
+		return quantity;
+	}
+
+	/**
+	 * @return Returns unit
+	 */
+	public SiUnit getUnit() {
+		return unit;
+	}
+
+	/**
 	 * 
 	 */
 	public QuantityUnit add(QuantityUnit augend) {
 		assertHasSameUnit(augend);
-		double result = number + augend.number;
+		double result = quantity + augend.quantity;
 		return new QuantityUnit(result, unit);
 	}
 	
@@ -75,7 +96,7 @@ public class QuantityUnit implements Serializable {
 	 */
 	public QuantityUnit subtract(QuantityUnit subtrahend) {
 		assertHasSameUnit(subtrahend);
-		double result = number - subtrahend.number;
+		double result = quantity - subtrahend.quantity;
 		return new QuantityUnit(result, unit);
 	}
 	
@@ -83,7 +104,7 @@ public class QuantityUnit implements Serializable {
 	 * 
 	 */
 	public QuantityUnit multiply(QuantityUnit multiplier) {
-		double newNumber = number * multiplier.number;
+		double newNumber = quantity * multiplier.quantity;
 		SiUnit newSiUnit = unit.multiply(multiplier.unit);
 		return new QuantityUnit(newNumber, newSiUnit);
 	}
@@ -92,9 +113,23 @@ public class QuantityUnit implements Serializable {
 	 * 
 	 */
 	public QuantityUnit divide(QuantityUnit divisor) {
-		double newNumber = number * divisor.number;
+		double newNumber = quantity / divisor.quantity;
 		SiUnit newSiUnit = unit.divide(divisor.unit);
 		return new QuantityUnit(newNumber, newSiUnit);
+	}
+
+	/**
+	 * 
+	 */
+	public final QuantityUnit pow(int toPower) {
+		return power(toPower);
+	}
+	
+	/**
+	 * 
+	 */
+	public QuantityUnit power(int toPower) {
+		return new QuantityUnit(Math.pow(quantity, toPower), unit.power(toPower));
 	}
 	
 	/**
@@ -105,4 +140,5 @@ public class QuantityUnit implements Serializable {
 			throw new IllegalArgumentException("incompatible unit");
 		}
 	}
+
 }

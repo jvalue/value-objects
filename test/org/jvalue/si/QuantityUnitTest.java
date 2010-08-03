@@ -25,78 +25,85 @@ public class QuantityUnitTest {
 	/**
 	 * 
 	 */
-	protected SiUnit siUnit_m = new SiUnit(new int[] {1, 0, 0, 0, 0, 0, 0});
-	protected SiUnit siUnit_s = new SiUnit(new int[] {0, 0, 1, 0, 0, 0, 0});
-	protected SiUnit siUnit_cd = new SiUnit(new int[] {0, 0, 0, 0, 0, 0, 1});
-	
-
 	@Test
 	public void testAdd() {
-		QuantityUnit addend = getQuantityUnit(3.0);
-		QuantityUnit augend = getQuantityUnit(4.0);
-		QuantityUnit result = getQuantityUnit(7.0);
+		QuantityUnit addend = new QuantityUnit(3.0);
+		QuantityUnit augend = new QuantityUnit(4.0);
+		QuantityUnit result = new QuantityUnit(7.0);
 		assertEquals(addend.add(augend), result);
 	}
 	
+	/**
+	 * 
+	 */
 	@Test
-	public void testAddWithCompatibleUnits() {
-		QuantityUnit add0 = getQuantityUnit(3.0, siUnit_m);
-		QuantityUnit aug0 = getQuantityUnit(4.0, siUnit_m);
-		QuantityUnit res0 = getQuantityUnit(7.0, siUnit_m);
+	public void testAddWithCompatibleValues() {
+		QuantityUnit add0 = new QuantityUnit(3.0, SiUnit.m);
+		QuantityUnit aug0 = new QuantityUnit(4.0, SiUnit.m);
+		QuantityUnit res0 = new QuantityUnit(7.0, SiUnit.m);
 		assertEquals(add0.add(aug0), res0);
 
-		QuantityUnit add1 = getQuantityUnit(-17.0, siUnit_s);
-		QuantityUnit aug1 = getQuantityUnit(17.0, siUnit_s);
-		QuantityUnit res1 = getQuantityUnit(0.0, siUnit_s);
+		QuantityUnit add1 = new QuantityUnit((-17.0), SiUnit.s);
+		QuantityUnit aug1 = new QuantityUnit(17.0, SiUnit.s);
+		QuantityUnit res1 = new QuantityUnit(0.0, SiUnit.s);
 		assertEquals(add1.add(aug1), res1);
 
-		QuantityUnit add2 = getQuantityUnit(42.0, siUnit_cd);
-		QuantityUnit aug2 = getQuantityUnit(-4.0, siUnit_cd);
-		QuantityUnit res2 = getQuantityUnit(38.0, siUnit_cd);
+		QuantityUnit add2 = new QuantityUnit(42.0, SiUnit.cd);
+		QuantityUnit aug2 = new QuantityUnit((-4.0), SiUnit.cd);
+		QuantityUnit res2 = new QuantityUnit(38.0, SiUnit.cd);
 		assertEquals(add2.add(aug2), res2);
 	}
 	
+	/**
+	 * 
+	 */
 	@Test(expected = IllegalArgumentException.class) 
-	public void testAddWithIncompatibleUnits() {
-		QuantityUnit addend = getQuantityUnit(3.0, siUnit_m);
-		QuantityUnit augend = getQuantityUnit(4.0, siUnit_s);
+	public void testAddWithIncompatibleValues() {
+		QuantityUnit addend = new QuantityUnit(3.0, SiUnit.m);
+		QuantityUnit augend = new QuantityUnit(4.0, SiUnit.s);
 		addend.add(augend);
 	}
 	
+	/**
+	 * 
+	 */
 	@Test
 	public void testSubtract() {
-		QuantityUnit arg0 = getQuantityUnit(3.0, siUnit_m);
-		QuantityUnit arg1 = getQuantityUnit(4.0, siUnit_m);
-		QuantityUnit result = getQuantityUnit(-1.0, siUnit_m);
+		QuantityUnit arg0 = new QuantityUnit(3.0, SiUnit.m);
+		QuantityUnit arg1 = new QuantityUnit(4.0, SiUnit.m);
+		QuantityUnit result = new QuantityUnit((-1.0), SiUnit.m);
 		assertEquals(arg0.subtract(arg1), result);
 	}
 	
+	/**
+	 * 
+	 */
 	@Test
 	public void testMultiply() {
-		QuantityUnit arg0 = getQuantityUnit(3.0, siUnit_m);
-		QuantityUnit arg1 = getQuantityUnit(4.0, siUnit_m);
-		QuantityUnit result = arg0.multiply(arg1);
+		QuantityUnit arg0 = new QuantityUnit(3.0, SiUnit.m);
+		QuantityUnit arg1 = new QuantityUnit(4.0, SiUnit.m);
+		QuantityUnit result = new QuantityUnit(12.0, SiUnit.m.power(2));
+		assertEquals(result, arg0.multiply(arg1));
 	}
 	
+	/**
+	 * 
+	 */
 	@Test
 	public void testDivide() {
-		QuantityUnit arg0 = getQuantityUnit(3.0, siUnit_m);
-		QuantityUnit arg1 = getQuantityUnit(4.0, siUnit_m);
-		QuantityUnit result = arg0.divide(arg1);
+		QuantityUnit arg0 = new QuantityUnit(3.0, SiUnit.m);
+		QuantityUnit arg1 = new QuantityUnit(4.0, SiUnit.m);
+		QuantityUnit result = new QuantityUnit(3.0 / 4.0);
+		assertEquals(result, arg0.divide(arg1));
 	}
 	
 	/**
 	 * 
 	 */
-	protected QuantityUnit getQuantityUnit(double number) {
-		return getQuantityUnit(number, SiUnit.getDefaultValue());
+	@Test
+	public void testPower() {
+		QuantityUnit base = new QuantityUnit(13.2, SiUnit.cd);
+		QuantityUnit result = new QuantityUnit(Math.pow(13.2, 13), SiUnit.cd.power(13));
+		assertEquals(result, base.power(13));
 	}
-	
-	/**
-	 * 
-	 */
-	protected QuantityUnit getQuantityUnit(double number, SiUnit siUnit) {
-		return new QuantityUnit(number, siUnit);
-	}
-	
 }
