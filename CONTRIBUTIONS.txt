@@ -1,3 +1,8 @@
-== JValue 0.7 ==
+== JValue 0.8 (in development) ==
+
+* Introduced QuantityUnit and SiUnit (Dirk Riehle, Wolf Siberski)
+* Adapted RangeBound and Range from JValue 0.6.12 (Dirk Riehle, Wolf Siberski)
+
+== JValue 0.7 (released) ==
 
 * StringName adapted from JValue 0.6.12 to become Name (Dirk Riehle, Wolf Siberski)
