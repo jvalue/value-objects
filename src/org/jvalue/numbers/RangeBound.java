@@ -1,5 +1,3 @@
-package org.jvalue.numbers;
-
 /**
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +12,23 @@ package org.jvalue.numbers;
  * limitations under the License.
  */
 
+package org.jvalue.numbers;
+
+import java.io.*;
+
 /**
  * A RangeBound represents the bound of a range. 
  * It holds a value plus a flag stating whether the bound is inclusive of that value or not.
  * Two range bounds are equal if both the value and the inclusive flag are equal.
  * The comparison logic for RangeBounds depends on their usage (as upper rsp. lower bound), therefore RangeBound is not a Comparable.
  */
-public class RangeBound<T extends Comparable<T>> {
+public class RangeBound<T extends Comparable<T>> implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4640837997902512973L;
+	
 	/**
 	 * 
 	 */
@@ -48,7 +55,9 @@ public class RangeBound<T extends Comparable<T>> {
 	 */
 	@Override
 	public boolean equals(Object otherObject) {
-		if ((otherObject != null) && (otherObject instanceof RangeBound)) {
+		if (otherObject == this) {
+			return true;
+		} else if ((otherObject != null) && (otherObject instanceof RangeBound)) {
 			RangeBound otherBound = (RangeBound) otherObject;
 			return (value.equals(otherBound.value)) && (inclusive == otherBound.inclusive);
 		} 

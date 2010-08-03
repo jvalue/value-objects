@@ -1,5 +1,3 @@
-package org.jvalue.numbers;
-
 /**
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +12,22 @@ package org.jvalue.numbers;
  * limitations under the License.
  */
 
+package org.jvalue.numbers;
+
+import java.io.Serializable;
+
 /**
  * A Range represents a range of values.
  * It has a lower and an upper bound, made up of RangeBound values.
  * Bound values may be null, implying no limit to that range value.
  */
-public class Range<T extends Comparable<T>> {
+public class Range<T extends Comparable<T>> implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7272900641476477654L;
+	
 	/**
 	 * 
 	 */
@@ -41,7 +48,9 @@ public class Range<T extends Comparable<T>> {
 	 */
 	@Override
 	public boolean equals(Object otherObject) {
-		if ((otherObject != null) && (otherObject instanceof Range)) {
+		if (otherObject == this) {
+			return true;
+		} else if ((otherObject != null) && (otherObject instanceof Range)) {
 			Range otherRange = (Range) otherObject;
 			return lowerBound.equals(otherRange.lowerBound) && upperBound.equals(otherRange.upperBound); 
 		}

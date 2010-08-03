@@ -1,5 +1,3 @@
-package org.jvalue.si;
-
 /**
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +11,8 @@ package org.jvalue.si;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package org.jvalue.si;
 
 import java.io.*;
 import java.util.*;
@@ -61,7 +61,9 @@ public class QuantityUnit implements Serializable {
 	 * 
 	 */
 	public boolean equals(Object otherObject) {
-		if ((otherObject != null) && (otherObject instanceof QuantityUnit)) {
+		if (otherObject == this) {
+			return true;
+		} else if ((otherObject != null) && (otherObject instanceof QuantityUnit)) {
 			QuantityUnit qu = (QuantityUnit) otherObject;
 			return (qu.quantity == quantity) && unit.equals(qu.unit);
 		}

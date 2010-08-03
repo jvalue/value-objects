@@ -1,5 +1,3 @@
-package org.jvalue.si;
-
 /**
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +12,13 @@ package org.jvalue.si;
  * limitations under the License.
  */
 
+package org.jvalue.si;
+
 import org.junit.*;
 import static org.junit.Assert.*;
 
 import org.jvalue.numbers.Range;
 import org.jvalue.numbers.RangeBound;
-
 
 /**
  * Tests for self-defined QuantityUnit types

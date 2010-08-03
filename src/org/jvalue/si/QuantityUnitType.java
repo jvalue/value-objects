@@ -1,5 +1,3 @@
-package org.jvalue.si;
-
 /**
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +12,9 @@ package org.jvalue.si;
  * limitations under the License.
  */
 
-import org.jvalue.numbers.Range;
+package org.jvalue.si;
+
+import org.jvalue.numbers.*;
 
 /**
  * A QuanityUnitType captures the type constraints of its instances.

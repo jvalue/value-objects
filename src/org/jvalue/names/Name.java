@@ -1,5 +1,3 @@
-package org.jvalue.names;
-
 /**
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +11,8 @@ package org.jvalue.names;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package org.jvalue.names;
 
 import java.io.*;
 import java.util.*;
@@ -106,11 +106,12 @@ public class Name implements Serializable {
 	 */
 	@Override
 	public boolean equals(Object otherObject) {
-		if ((otherObject != null) && (otherObject instanceof Name)) {
+		if (otherObject == this) {
+			return true;
+		} else if ((otherObject != null) && (otherObject instanceof Name)) {
 			Name otherName = (Name) otherObject;
 			return name.equals(otherName.name);
 		}
-		
 		return false;
 	}
 	
