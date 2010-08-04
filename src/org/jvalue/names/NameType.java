@@ -19,7 +19,8 @@ import org.jvalue.si.QuantityUnit;
 import org.jvalue.si.SiUnit;
 
 /**
- * Utility class for parsing and masking Strings.
+ * A NameType captures the type restrictions of its instances.
+ * It accepts restrictions on number of components as well as String pattern restrictions on components.
  */
 public class NameType {
 
