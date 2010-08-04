@@ -29,7 +29,7 @@ public class QuantityUnitTypeTest {
 	 * 
 	 */
 	@Test
-	public void testConstraint2() {
+	public void testTypeRestriction() {
 		QuantityUnit addend = new QuantityUnit(7.0, SiUnit.m);
 		QuantityUnit augend = new QuantityUnit(8.0, SiUnit.m);
 		
@@ -43,8 +43,11 @@ public class QuantityUnitTypeTest {
 		assertFalse(myLengthType.isValidInstance(addend.add(augend)));
 	}
 
-	
+	/**
+	 * 
+	 */
 	public static class TotemPole {
+
 		private QuantityUnit height;
 		
 		private static QuantityUnitType heightType;
@@ -55,25 +58,26 @@ public class QuantityUnitTypeTest {
 			Range<Double> range1 = new Range<Double>(lb, up);
 			heightType = new QuantityUnitType(range1, SiUnit.m);
 		}
-		
-		
+
 		public QuantityUnit getHeight() {
 			return height;
 		}
+
 		public void setHeight(QuantityUnit height) {
 			heightType.assertIsValidInstance(height);
 			this.height = height;
 		}
-		
+	
 	}
 	
 	/**
 	 * 
 	 */
 	@Test(expected=IllegalArgumentException.class)
-	public void testAttributeConstraints() {
+	public void testAttributeRestrictions() {
 		TotemPole r = new TotemPole();
 		QuantityUnit height = new QuantityUnit(50.0, SiUnit.m);
 		r.setHeight(height);
-	}		
+	}
+
 }

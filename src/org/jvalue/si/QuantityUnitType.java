@@ -17,32 +17,32 @@ package org.jvalue.si;
 import org.jvalue.numbers.*;
 
 /**
- * A QuanityUnitType captures the type constraints of its instances.
- * It accepts range constraints as well as unit constraints.
- * Unit constraints are a fixed unit that an instances must conform to.
+ * A QuanityUnitType captures the type restrictions of its instances.
+ * It accepts range restrictions as well as unit restrictions.
+ * Unit restrictions are a fixed unit that an instances must conform to.
  */
 public class QuantityUnitType {
 	
 	/**
 	 * 
 	 */
-	protected Range<Double> rangeConstraint;
-	protected SiUnit unitConstraint;
+	protected Range<Double> rangeRestriction;
+	protected SiUnit unitRestriction;
 	
 	/**
 	 * 
 	 */
 	public QuantityUnitType(Range<Double> range, SiUnit unit) {
-		rangeConstraint = range;
-		unitConstraint = unit;
+		rangeRestriction = range;
+		unitRestriction = unit;
 	}
 
 	/**
 	 * 
 	 */
 	public boolean isValidInstance(QuantityUnit value) {
-		return unitConstraint.equals(value.getUnit()) && 
-			rangeConstraint.includes(value.getQuantity());
+		return unitRestriction.equals(value.getUnit()) && 
+			rangeRestriction.includes(value.getQuantity());
 	}
 
 	/**
