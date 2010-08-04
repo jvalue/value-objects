@@ -48,9 +48,14 @@ public class Name implements Serializable {
 	public static final char DEFAULT_ESCAPE_CHAR = '\\';
 	
 	/**
+	 * The empty name is a name with no components and default delimiter.
+	 */
+	public static final Name EMPTY_NAME = new Name();
+	
+	/**
 	 * Represents name as a single string
 	 */
-	protected String name;
+	protected String name = null;
 	
 	/**
 	 * Saves number of components for performance reasons 
@@ -86,6 +91,8 @@ public class Name implements Serializable {
 	 * @param escape Escape character to use when parsing string
 	 */
 	public Name(String name, char delimiter, char escape) {
+		assert name != null;
+		
 		if ((delimiter != getDelimiterChar()) || (escape != getEscapeChar())) {
 			name = switchDelEscScheme(name, delimiter, escape, getDelimiterChar(), getEscapeChar());
 		}
@@ -93,6 +100,13 @@ public class Name implements Serializable {
 		this.name = name;
 	}
 	
+	/**
+	 * Used for empty no components name.
+	 */
+	protected Name() {
+		this.name = null;
+	}
+
 	/**
 	 *
 	 */
@@ -205,18 +219,14 @@ public class Name implements Serializable {
 	 * 
 	 */
 	public boolean isEmpty() {
-		return name.equals("");
+		return name == null; // return name.equals("");
 	}
 	
 	/**
 	 *
 	 */
 	public Name getContextName() {
-		assertIsValidIndex(getNoComponents() - 1);
-		if (getNoComponents() == 1) {
-			return new Name("");
-		}
-
+		assertIsValidIndex(getNoComponents() - 2);
 		int endPos = getIndexOfEndOfComponent(getNoComponents() - 2);
 		return new Name(name.substring(0, endPos));
 	}
@@ -355,7 +365,7 @@ public class Name implements Serializable {
 		StringBuilder result = new StringBuilder();
 		int length = name.length();
 		if (length != 0) {
-			for (int end = 0; end < length; end++) {
+			for (int end = 0; end <= length; end++) {
 				int startPos = end;
 				String component = "";
 				if (startPos < name.length()) {
