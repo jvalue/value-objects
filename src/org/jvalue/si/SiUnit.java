@@ -68,11 +68,11 @@ public class SiUnit implements Serializable {
 	/**
 	 * Thread-safe thanks to ConcurrentMap.putIfAbsent()
 	 */
-	public static SiUnit getValue(int[] myDimensions) {
-		SiUnit key = new SiUnit(myDimensions);
+	public static SiUnit getValue(int[] dimensions) {
+		SiUnit key = new SiUnit(dimensions);
 		SiUnit result = unitCache.get(key);
 		if (result == null) {
-			key.dimensions = Arrays.copyOf(myDimensions, 7);
+			key.dimensions = Arrays.copyOf(dimensions, 7);
 			unitCache.putIfAbsent(key, key);
 			result = unitCache.get(key);
 		}
@@ -83,8 +83,8 @@ public class SiUnit implements Serializable {
 	/**
 	 * 
 	 */
-	public SiUnit(int[] myDimensions) {
-		dimensions = myDimensions;
+	public SiUnit(int[] dimensions) {
+		this.dimensions = dimensions;
 	}
 	
 	/**

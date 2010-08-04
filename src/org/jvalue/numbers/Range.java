@@ -35,12 +35,26 @@ public class Range<T extends Comparable<T>> implements Serializable {
 	protected RangeBound<T> upperBound;
 
 	/**
-	 * @param newLowerBound Use null to indicate unlimited
-	 * @param newUpperBound Use null to indicate unlimited
+	 * 
 	 */
-	public Range(RangeBound<T> newLowerBound, RangeBound<T> newUpperBound) {
-		lowerBound = newLowerBound;
-		upperBound = newUpperBound;
+	public Range(T exactValue) {
+		this(exactValue, exactValue);
+	}
+	
+	/**
+	 * Creates RangeBound values from arguments, assumes inclusive = true
+	 */
+	public Range(T lowerBound, T upperBound) {
+		this(new RangeBound<T>(lowerBound), new RangeBound<T>(upperBound));
+	}
+	
+	/**
+	 * @param lowerBound Use null to indicate unlimited
+	 * @param upperBound Use null to indicate unlimited
+	 */
+	public Range(RangeBound<T> lowerBound, RangeBound<T> upperBound) {
+		this.lowerBound = lowerBound;
+		this.upperBound = upperBound;
 	}
 	
 	/**

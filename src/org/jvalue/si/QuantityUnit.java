@@ -38,8 +38,8 @@ public class QuantityUnit implements Serializable {
 	/**
 	 * 
 	 */
-	public QuantityUnit(double myQuantity) {
-		this(myQuantity, SiUnit.NONE);
+	public QuantityUnit(double quantity) {
+		this(quantity, SiUnit.NONE);
 	}
 	
 	/**
@@ -52,9 +52,9 @@ public class QuantityUnit implements Serializable {
 	/**
 	 * 
 	 */
-	public QuantityUnit(double myNumber, SiUnit myUnit) {
-		quantity = myNumber;
-		unit = myUnit;
+	public QuantityUnit(double quantity, SiUnit unit) {
+		this.quantity = quantity;
+		this.unit = unit;
 	}
 	
 	/**

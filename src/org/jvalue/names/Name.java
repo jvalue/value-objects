@@ -85,12 +85,12 @@ public class Name implements Serializable {
 	 * @param delimiter Component delimiter to use when parsing string
 	 * @param escape Escape character to use when parsing string
 	 */
-	public Name(String newName, char delimiter, char escape) {
+	public Name(String name, char delimiter, char escape) {
 		if ((delimiter != getDelimiterChar()) || (escape != getEscapeChar())) {
-			newName = switchDelEscScheme(newName, delimiter, escape, getDelimiterChar(), getEscapeChar());
+			name = switchDelEscScheme(name, delimiter, escape, getDelimiterChar(), getEscapeChar());
 		}
 
-		name = newName;
+		this.name = name;
 	}
 	
 	/**

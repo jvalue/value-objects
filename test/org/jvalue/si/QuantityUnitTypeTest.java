@@ -36,11 +36,11 @@ public class QuantityUnitTypeTest {
 		RangeBound<Double> lb = new RangeBound<Double>(0.0);
 		RangeBound<Double> up = new RangeBound<Double>(10.0);
 		Range<Double> range1 = new Range<Double>(lb, up);
-		QuantityUnitType myLengthType = new QuantityUnitType(range1, SiUnit.m);
+		QuantityUnitType lengthType = new QuantityUnitType(range1, SiUnit.m);
 
-		assertTrue(myLengthType.isValidInstance(addend));
-		assertTrue(myLengthType.isValidInstance(augend));
-		assertFalse(myLengthType.isValidInstance(addend.add(augend)));
+		assertTrue(lengthType.isValidInstance(addend));
+		assertTrue(lengthType.isValidInstance(augend));
+		assertFalse(lengthType.isValidInstance(addend.add(augend)));
 	}
 
 	/**

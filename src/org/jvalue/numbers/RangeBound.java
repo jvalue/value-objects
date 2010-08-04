@@ -38,16 +38,16 @@ public class RangeBound<T extends Comparable<T>> implements Serializable {
 	/**
 	 * 
 	 */
-	public RangeBound(T newValue) {
-		this(newValue, true);
+	public RangeBound(T value) {
+		this(value, true);
 	}
 	
 	/**
 	 * 
 	 */
-	public RangeBound(T newValue, boolean isInclusive) {
-		value = newValue;
-		inclusive = isInclusive;
+	public RangeBound(T value, boolean inclusive) {
+		this.value = value;
+		this.inclusive = inclusive;
 	}
 	
 	/**
