@@ -134,4 +134,5 @@ public class ValueTypeTest {
 		noMovieReleaseDate.set(1, 1, 1);
 		strangeDays.setReleaseDate(noMovieReleaseDate);
 	}
+	
 }
