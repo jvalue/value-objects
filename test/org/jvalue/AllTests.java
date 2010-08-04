@@ -24,11 +24,13 @@ import org.junit.runners.*;
 @RunWith(Suite.class)
 @Suite.SuiteClasses( {
 	org.jvalue.names.NameTest.class,
+	org.jvalue.names.NameTypeTest.class,
 
 	org.jvalue.numbers.RangeBoundTest.class,
 	org.jvalue.numbers.RangeTest.class,
 
 	org.jvalue.si.QuantityUnitTest.class,
+	org.jvalue.si.QuantityUnitTypeTest.class,
 	org.jvalue.si.SiUnitTest.class
 })
 
