@@ -23,6 +23,8 @@ import org.junit.runners.*;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses( {
+	org.jvalue.date.DateTypeTest.class,
+
 	org.jvalue.names.NameTest.class,
 	org.jvalue.names.NameTypeTest.class,
 
