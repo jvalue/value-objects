@@ -14,30 +14,32 @@
 
 package org.jvalue;
 
-import org.junit.runner.*;
-import org.junit.runners.*;
-
 /**
- * Wolf sagt durch die Brust ins Auge annotiert.
+ * A ValueType is the abstraction of the various specific value type objects.
+ * In general, a value type captures type restrictions and can be configured.
  */
-
-@RunWith(Suite.class)
-@Suite.SuiteClasses( {
-	org.jvalue.ValueTypeTest.class,
+public abstract class ValueType<T> {
 	
-	org.jvalue.date.DateTypeTest.class,
+	/**
+	 * 
+	 */
+	public T validate(T value) throws IllegalArgumentException{
+		assertIsValidInstance(value);
+		return value;
+	}
 
-	org.jvalue.names.NameTest.class,
-	org.jvalue.names.NameTypeTest.class,
+	/**
+	 * 
+	 */
+	public abstract boolean isValidInstance(T value);
 
-	org.jvalue.numbers.RangeBoundTest.class,
-	org.jvalue.numbers.RangeTest.class,
-
-	org.jvalue.si.QuantityUnitTest.class,
-	org.jvalue.si.QuantityUnitTypeTest.class,
-	org.jvalue.si.SiUnitTest.class
-})
-
-public class AllTests {
-	// What a do nothing class
+	/**
+	 * 
+	 */
+	public void assertIsValidInstance(T value) throws IllegalArgumentException {
+		if(!isValidInstance(value)){
+			throw new IllegalArgumentException("incompatible type");
+		}
+	}
+	
 }

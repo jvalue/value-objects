@@ -14,6 +14,7 @@
 
 package org.jvalue.si;
 
+import org.jvalue.ValueType;
 import org.jvalue.numbers.*;
 
 /**
@@ -21,7 +22,7 @@ import org.jvalue.numbers.*;
  * It accepts range restrictions as well as unit restrictions.
  * Unit restrictions are a fixed unit that an instances must conform to.
  */
-public class QuantityUnitType {
+public class QuantityUnitType extends ValueType<QuantityUnit> {
 	
 	/**
 	 * 
@@ -43,15 +44,6 @@ public class QuantityUnitType {
 	public boolean isValidInstance(QuantityUnit value) {
 		return unitRestriction.equals(value.getUnit()) && 
 			rangeRestriction.includes(value.getQuantity());
-	}
-
-	/**
-	 * 
-	 */
-	public void assertIsValidInstance(QuantityUnit value) throws IllegalArgumentException {
-		if(!isValidInstance(value)){
-			throw new IllegalArgumentException("incompatible type");
-		}
 	}
 
 }

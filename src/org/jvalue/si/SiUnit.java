@@ -90,6 +90,7 @@ public class SiUnit implements Serializable {
 	/**
 	 * 
 	 */
+	@SuppressWarnings("unused")
 	private SiUnit() {
 		// do nothing
 	}

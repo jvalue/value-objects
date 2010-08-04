@@ -15,14 +15,14 @@
 package org.jvalue.date;
 
 import java.util.Calendar;
-
+import org.jvalue.*;
 import org.jvalue.numbers.Range;
 
 /**
  * A DateType captures the type restrictions of its instances.
  * It accepts range restrictions on the allowed date.
  */
-public class DateType {
+public class DateType extends ValueType<Calendar> {
 
 	/**
 	 * 
@@ -48,15 +48,6 @@ public class DateType {
 	 */
 	public boolean isValidInstance(Calendar value) {
 		return rangeRestriction.includes(value);
-	}
-
-	/**
-	 * 
-	 */
-	public void assertIsValidInstance(Calendar value) throws IllegalArgumentException {
-		if(!isValidInstance(value)){
-			throw new IllegalArgumentException("incompatible type");
-		}
 	}
 
 }

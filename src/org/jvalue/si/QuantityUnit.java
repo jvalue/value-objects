@@ -15,7 +15,6 @@
 package org.jvalue.si;
 
 import java.io.*;
-import java.util.*;
 
 /**
  * A QuantityUnit combines a Quantity (double for now) with a Unit of measure.

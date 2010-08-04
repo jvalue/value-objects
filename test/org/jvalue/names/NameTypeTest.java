@@ -14,7 +14,6 @@
 
 package org.jvalue.names;
 
-import java.util.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.jvalue.names.Name;

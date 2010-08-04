@@ -44,8 +44,8 @@ public class Range<T extends Comparable<T>> implements Serializable {
 	/**
 	 * Creates RangeBound values from arguments, assumes inclusive = true
 	 */
-	public Range(T lowerBound, T upperBound) {
-		this(new RangeBound<T>(lowerBound), new RangeBound<T>(upperBound));
+	public Range(T lb, T ub) {
+		this(lb == null ? null : new RangeBound<T>(lb), ub == null ? null : new RangeBound<T>(ub));
 	}
 	
 	/**
@@ -65,6 +65,7 @@ public class Range<T extends Comparable<T>> implements Serializable {
 		if (otherObject == this) {
 			return true;
 		} else if ((otherObject != null) && (otherObject instanceof Range)) {
+			@SuppressWarnings("rawtypes")
 			Range otherRange = (Range) otherObject;
 			return lowerBound.equals(otherRange.lowerBound) && upperBound.equals(otherRange.upperBound); 
 		}

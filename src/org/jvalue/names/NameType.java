@@ -14,15 +14,14 @@
 
 package org.jvalue.names;
 
+import org.jvalue.ValueType;
 import org.jvalue.numbers.Range;
-import org.jvalue.si.QuantityUnit;
-import org.jvalue.si.SiUnit;
 
 /**
  * A NameType captures the type restrictions of its instances.
  * It accepts restrictions on number of components as well as String pattern restrictions on components.
  */
-public class NameType {
+public class NameType extends ValueType<Name>{
 
 	/**
 	 * 
@@ -55,15 +54,6 @@ public class NameType {
 	 */
 	public boolean isValidInstance(Name value) {
 		return countRestriction.includes(value.getNoComponents());
-	}
-
-	/**
-	 * 
-	 */
-	public void assertIsValidInstance(Name value) throws IllegalArgumentException {
-		if(!isValidInstance(value)){
-			throw new IllegalArgumentException("incompatible type");
-		}
 	}
 
 }

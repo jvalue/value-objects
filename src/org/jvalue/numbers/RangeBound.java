@@ -58,6 +58,7 @@ public class RangeBound<T extends Comparable<T>> implements Serializable {
 		if (otherObject == this) {
 			return true;
 		} else if ((otherObject != null) && (otherObject instanceof RangeBound)) {
+			@SuppressWarnings("rawtypes")
 			RangeBound otherBound = (RangeBound) otherObject;
 			return (value.equals(otherBound.value)) && (inclusive == otherBound.inclusive);
 		} 

@@ -22,15 +22,15 @@ import org.jvalue.numbers.Range;
 import org.jvalue.numbers.RangeBound;
 
 /**
- * TestCase for NameType.
+ * TestCase for DateType.
  */
 public class DateTypeTest {
 
-	DateType dateType1;
-	DateType dateType2;
+	protected DateType dateType1;
+	protected DateType dateType2;
 	
 	/**
-	 * create date types for tests
+	 * Create date types for tests.
 	 */
 	@Before
 	public void setup(){
@@ -48,7 +48,7 @@ public class DateTypeTest {
 	}
 	
 	/**
-	 * test inclusive range restriction on Calendar values
+	 * Test inclusive range restriction on Calendar values.
 	 */
 	@Test
 	public void testDateRangeRestriction1() {
