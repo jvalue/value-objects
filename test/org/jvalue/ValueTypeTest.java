@@ -82,8 +82,22 @@ public class ValueTypeTest {
 		/**
 		 * 
 		 */
+		public void setReleaseDate(Calendar releaseDate) {
+			this.releaseDate = releaseDateType.validate(releaseDate);
+		}
+		
+		/**
+		 * 
+		 */
 		public QuantityUnit getLength() {
 			return length;
+		}
+		
+		/**
+		 * 
+		 */
+		public void setLength(QuantityUnit length) {
+			this.length = lengthType.validate(length);
 		}
 		
 	}
@@ -91,12 +105,33 @@ public class ValueTypeTest {
 	/**
 	 * 
 	 */
-	@Test
-	public void testSimpleMovie() {
+	protected Movie strangeDays;
+
+	/**
+	 * 
+	 */
+	@Before
+	public void setUp() {
 		Calendar releaseDate = Calendar.getInstance();
 		releaseDate.set(1995, 10, 13); // wanna puke
-		Movie strangeDays = new Movie(releaseDate, new QuantityUnit(145 * 60, SiUnit.s));
-		assert(strangeDays.getLength().getQuantity() == 145.0 * 60);
+		strangeDays = new Movie(releaseDate, new QuantityUnit(145 * 60, SiUnit.s));
 	}
 
+	/**
+	 * 
+	 */
+	@Test
+	public void testSimpleMovie() {
+		assert(strangeDays.getLength().getQuantity() == 145.0 * 60);
+	}
+	
+	/**
+	 * 
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testReleaseDate() {
+		Calendar noMovieReleaseDate = Calendar.getInstance();
+		noMovieReleaseDate.set(1, 1, 1);
+		strangeDays.setReleaseDate(noMovieReleaseDate);
+	}
 }
