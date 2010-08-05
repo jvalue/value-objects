@@ -16,18 +16,13 @@ package org.jvalue.si;
 
 import org.jvalue.ExactValueRestriction;
 import org.jvalue.Restriction;
-import org.jvalue.ValueType;
+import org.jvalue.SimpleValueType;
 
 /**
  * An SiUnitType captures the restrictions on SiUnits used in value objects.
  */
-public class SiUnitType extends ValueType<SiUnit> {
+public class SiUnitType extends SimpleValueType<SiUnit> {
 
-	/**
-	 * 
-	 */
-	protected Restriction<SiUnit> restriction;
-	
 	/**
 	 * 
 	 */
@@ -39,14 +34,7 @@ public class SiUnitType extends ValueType<SiUnit> {
 	 * 
 	 */
 	public SiUnitType(Restriction<SiUnit> restriction) {
-		this.restriction = restriction;
-	}
-	
-	/**
-	 * 
-	 */
-	public boolean isValidInstance(SiUnit value) {
-		return restriction.isSatisfiedBy(value);
+		super(restriction);
 	}
 	
 }

@@ -22,13 +22,8 @@ import org.jvalue.numbers.Range;
  * A DateType captures the type restrictions of its instances.
  * It accepts range restrictions on the allowed date.
  */
-public class DateType extends ValueType<Calendar> {
+public class DateType extends SimpleValueType<Calendar> {
 
-	/**
-	 * 
-	 */
-	protected Range<Calendar> rangeRestriction;
-	
 	/**
 	 * 
 	 */
@@ -39,15 +34,15 @@ public class DateType extends ValueType<Calendar> {
 	/**
 	 * 
 	 */
-	public DateType(Range<Calendar> rangeRestriction) {
-		this.rangeRestriction = rangeRestriction;
+	public DateType(Range<Calendar> range) {
+		this(new RangeRestriction<Calendar>(range));
 	}
 	
 	/**
 	 * 
 	 */
-	public boolean isValidInstance(Calendar value) {
-		return rangeRestriction.includes(value);
+	public DateType(Restriction<Calendar> restriction) {
+		super(restriction);
 	}
 
 }
