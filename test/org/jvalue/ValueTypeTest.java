@@ -29,7 +29,6 @@ import org.jvalue.si.SiUnit;
  */
 public class ValueTypeTest {
 	
-	
 	/**
 	 * 
 	 */
@@ -45,7 +44,7 @@ public class ValueTypeTest {
 		 * 
 		 */
 		static protected DateType releaseDateType = getMovieReleaseDateType();
-		static protected QuantityUnitType lengthType = getMovieLengthType();
+		static protected QuantityUnitType lengthType = new QuantityUnitType(new Range<Double>(0.0, null), SiUnit.s);
 		
 		/**
 		 * Soon to be ... manager.getValueType("com.biz.app.Movie.releaseDate");
@@ -57,13 +56,6 @@ public class ValueTypeTest {
 			return new DateType(movieDateRange);
 		}
 		
-		/**
-		 * Soon to be ... manager.getValueType("com.biz.app.Movie.length");
-		 */
-		protected static QuantityUnitType getMovieLengthType() {
-			return new QuantityUnitType(new Range<Double>(0.0, null), SiUnit.s);
-		}
-
 		/**
 		 * 
 		 */
@@ -122,7 +114,7 @@ public class ValueTypeTest {
 	 */
 	@Test
 	public void testSimpleMovie() {
-		assert(strangeDays.getLength().getQuantity() == 145.0 * 60);
+		assertTrue(strangeDays.getLength().getQuantity() == 145.0 * 60);
 	}
 	
 	/**

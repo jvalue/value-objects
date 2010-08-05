@@ -14,6 +14,8 @@
 
 package org.jvalue.si;
 
+import org.jvalue.ExactValueRestriction;
+import org.jvalue.RangeRestriction;
 import org.jvalue.ValueType;
 import org.jvalue.numbers.*;
 
@@ -27,23 +29,29 @@ public class QuantityUnitType extends ValueType<QuantityUnit> {
 	/**
 	 * 
 	 */
-	protected Range<Double> rangeRestriction;
-	protected SiUnit unitRestriction;
+	protected NumberType<Double> quantityType;
+	protected SiUnitType unitType;
 	
 	/**
 	 * 
 	 */
 	public QuantityUnitType(Range<Double> range, SiUnit unit) {
-		rangeRestriction = range;
-		unitRestriction = unit;
+		this(new NumberType<Double>(range), new SiUnitType(unit));
+	}
+	
+	/**
+	 * 
+	 */
+	public QuantityUnitType(NumberType<Double> quantityType, SiUnitType unitType) {
+		this.quantityType = quantityType;
+		this.unitType = unitType;
 	}
 
 	/**
 	 * 
 	 */
 	public boolean isValidInstance(QuantityUnit value) {
-		return unitRestriction.equals(value.getUnit()) && 
-			rangeRestriction.includes(value.getQuantity());
+		return quantityType.isValidInstance(value.quantity) && unitType.isValidInstance(value.unit);
 	}
 
 }

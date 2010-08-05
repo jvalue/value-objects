@@ -17,6 +17,9 @@ package org.jvalue.si;
 import org.junit.*;
 import static org.junit.Assert.*;
 
+import org.jvalue.ExactValueRestriction;
+import org.jvalue.RangeRestriction;
+import org.jvalue.numbers.NumberType;
 import org.jvalue.numbers.Range;
 import org.jvalue.numbers.RangeBound;
 
@@ -50,13 +53,12 @@ public class QuantityUnitTypeTest {
 
 		private QuantityUnit height;
 		
-		private static QuantityUnitType heightType;
+		private static QuantityUnitType heightType = getTotemPoleHeightType();
 		
-		static{
-			RangeBound<Double> lb = new RangeBound<Double>(0.0);
-			RangeBound<Double> up = new RangeBound<Double>(10.0);
-			Range<Double> range1 = new Range<Double>(lb, up);
-			heightType = new QuantityUnitType(range1, SiUnit.m);
+		protected static QuantityUnitType getTotemPoleHeightType() {
+			NumberType<Double> nt = new NumberType<Double>(0.0, 10.0);
+			SiUnitType ut = new SiUnitType(SiUnit.m);			
+			return new QuantityUnitType(nt, ut);
 		}
 
 		public QuantityUnit getHeight() {
@@ -64,8 +66,7 @@ public class QuantityUnitTypeTest {
 		}
 
 		public void setHeight(QuantityUnit height) {
-			heightType.assertIsValidInstance(height);
-			this.height = height;
+			this.height = heightType.validate(height);
 		}
 	
 	}
