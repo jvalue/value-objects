@@ -16,6 +16,11 @@ package org.jvalue.names;
 
 import org.junit.*;
 import static org.junit.Assert.*;
+
+import org.jvalue.ExactValueRestriction;
+import org.jvalue.ListType;
+import org.jvalue.RegExRestriction;
+import org.jvalue.StringType;
 import org.jvalue.names.Name;
 
 /**
@@ -82,4 +87,38 @@ public class NameTypeTest {
 		nameType.assertIsValidInstance(name);
 	}
 
+	/**
+	 * 
+	 */
+	@Test
+	public void testRegExRestriction() {
+		NameType nameType = new NameType(new RegExRestriction("[A-Z][a-z]*"));
+		Name n1 = new Name("Dirk Riehle", ' ');
+		assertTrue(nameType.isValidInstance(n1));
+		
+		Name n2 = new Name("cat");
+		assertFalse(nameType.isValidInstance(n2));
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public void testCompositeRestriction() {
+		ExactValueRestriction<Integer> lengthRestriction = new ExactValueRestriction<Integer>(2);
+		StringType componentType = new StringType("[A-Z][a-z]*");
+		ListType<String> listType = new ListType<String>(lengthRestriction, componentType);
+		NameType nameType = new NameType(listType);
+		
+		Name n1 = new Name("Dirk Riehle", ' ');
+		assertTrue(nameType.isValidInstance(n1));
+		
+		Name n2 = new Name("Wolf");
+		assertFalse(nameType.isValidInstance(n2));
+		
+		Name n3 = new Name("black cat");
+		assertFalse(nameType.isValidInstance(n3));
+		
+	}	
+	
 }

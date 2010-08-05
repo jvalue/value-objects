@@ -4,6 +4,7 @@
 * Adapted RangeBound and Range from JValue 0.6.12 (Dirk Riehle, Wolf Siberski)
 * Introduced ValueType abstraction (Dirk Riehle, Wolf Siberski)
 * Added DateType, NameType, and QuantityUnitType abstractions (Dirk Riehle, Wolf Siberski)
+* Added Restrictions, SimpleValueType, etc. (Dirk Riehle, Wolf Siberski)
 
 == JValue 0.7 (released) ==
 

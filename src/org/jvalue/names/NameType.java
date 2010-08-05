@@ -14,6 +14,9 @@
 
 package org.jvalue.names;
 
+import org.jvalue.ListType;
+import org.jvalue.Restriction;
+import org.jvalue.StringType;
 import org.jvalue.ValueType;
 import org.jvalue.numbers.Range;
 
@@ -21,39 +24,53 @@ import org.jvalue.numbers.Range;
  * A NameType captures the type restrictions of its instances.
  * It accepts restrictions on number of components as well as String pattern restrictions on components.
  */
-public class NameType extends ValueType<Name>{
+public class NameType extends ValueType<Name> {
 
 	/**
 	 * 
 	 */
-	Range<Integer> countRestriction;
+	protected ListType<String> nameType;
 	
 	/**
 	 * 
 	 */
-	public NameType(int exactNumber) {
-		this(new Range<Integer>(exactNumber));
+	public NameType(int exactCount) {
+		this(new ListType<String>(exactCount));
 	}
 
 	/**
 	 * 
 	 */
-	public NameType(int lowerBound, int upperBound) {
-		this(new Range<Integer>(lowerBound, upperBound));
+	public NameType(int minCount, int maxCount) {
+		this(new ListType<String>(minCount, maxCount));
 	}
 	
 	/**
 	 * 
 	 */
 	public NameType(Range<Integer> countRestriction) {
-		this.countRestriction = countRestriction;
+		this(new ListType<String>(countRestriction));
 	}
 	
 	/**
 	 * 
 	 */
+	public NameType(Restriction<String> componentRestriction) {
+		this(new ListType<String>(new StringType(componentRestriction)));
+	}
+	
+	/**
+	 * 
+	 */
+	public NameType(ListType<String> nameType) {
+		this.nameType = nameType;
+	}
+
+	/**
+	 * 
+	 */
 	public boolean isValidInstance(Name value) {
-		return countRestriction.includes(value.getNoComponents());
+		return nameType.isValidInstance(value.components()); 
 	}
 
 }

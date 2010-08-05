@@ -17,8 +17,6 @@ package org.jvalue.si;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-import org.jvalue.ExactValueRestriction;
-import org.jvalue.RangeRestriction;
 import org.jvalue.numbers.NumberType;
 import org.jvalue.numbers.Range;
 import org.jvalue.numbers.RangeBound;

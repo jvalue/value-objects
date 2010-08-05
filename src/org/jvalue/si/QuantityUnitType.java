@@ -14,8 +14,6 @@
 
 package org.jvalue.si;
 
-import org.jvalue.ExactValueRestriction;
-import org.jvalue.RangeRestriction;
 import org.jvalue.ValueType;
 import org.jvalue.numbers.*;
 

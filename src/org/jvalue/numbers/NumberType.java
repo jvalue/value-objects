@@ -17,7 +17,6 @@ package org.jvalue.numbers;
 import org.jvalue.SimpleValueType;
 import org.jvalue.ExactValueRestriction;
 import org.jvalue.RangeRestriction;
-import org.jvalue.ValueType;
 import org.jvalue.Restriction;
 
 /**
