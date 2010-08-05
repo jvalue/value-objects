@@ -111,7 +111,7 @@ public class Range<T extends Comparable<T>> implements Serializable {
 	 * 
 	 */
 	protected boolean lowerBoundHolds(T value) {
-		if(!hasLowerBound()){
+		if(!hasLowerBound()) {
 			return true;
 		}
 		
@@ -123,7 +123,7 @@ public class Range<T extends Comparable<T>> implements Serializable {
 	 * 
 	 */
 	protected boolean upperBoundHolds(T value) {
-		if(!hasUpperBound()){
+		if(!hasUpperBound()) {
 			return true;
 		}
 		

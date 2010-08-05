@@ -37,7 +37,7 @@ public abstract class ValueType<T> {
 	 * 
 	 */
 	public void assertIsValidInstance(T value) throws IllegalArgumentException {
-		if(!isValidInstance(value)){
+		if(!isValidInstance(value)) {
 			throw new IllegalArgumentException("incompatible type");
 		}
 	}

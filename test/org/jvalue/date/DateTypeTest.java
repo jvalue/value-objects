@@ -33,7 +33,7 @@ public class DateTypeTest {
 	 * Create date types for tests.
 	 */
 	@Before
-	public void setup(){
+	public void setup() {
 		Calendar lowerBound1 = Calendar.getInstance();
 		lowerBound1.clear();
 		lowerBound1.set(1970, 1, 1); 
