@@ -67,7 +67,6 @@ public class DateTypeTest {
 		assertFalse(dateType1.isValidInstance(date2));
 	}
 
-	
 	/**
 	 * test non-inclusive range restriction on Calendar values
 	 */
@@ -84,7 +83,6 @@ public class DateTypeTest {
 		assertFalse(dateType2.isValidInstance(date2));
 	}
 		
-	
 	/**
 	 * 
 	 */
@@ -94,4 +92,5 @@ public class DateTypeTest {
 		date.set(1789, 14, 1);
 		dateType1.assertIsValidInstance(date);
 	}
+	
 }
