@@ -162,7 +162,8 @@ public class Name implements Serializable {
 	}
 	
 	/**
-	**/
+	 *
+	 */
 	public String asString(char delimiter) {
 		if (delimiter == getDelimiterChar()) {
 			return asString();
@@ -435,7 +436,8 @@ public class Name implements Serializable {
 	}
 	
 	/**
-	**/
+	 *
+	 */
 	protected Name doRemove(int index) {
 		int startPos = getIndexOfStartOfComponent(index);
 		int endPos = getIndexOfEndOfComponent(index);
@@ -456,7 +458,8 @@ public class Name implements Serializable {
 	}
 	
 	/**
-	**/
+	 *
+	 */
 	protected Name doReplace(int index, String component) {
 		component = NameUtil.getMaskedString(component, getDelimiterChar(), getEscapeChar());
 		int startPos = getIndexOfStartOfComponent(index);
@@ -468,7 +471,8 @@ public class Name implements Serializable {
 	}
 	
 	/**
-	**/
+	 *
+	 */
 	protected String doGetMaskedComponent(int i) {
 		int startPos = getIndexOfStartOfComponent(i);
 		int endPos = getIndexOfEndOfComponent(i);
