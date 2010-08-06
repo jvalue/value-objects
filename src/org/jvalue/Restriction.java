@@ -18,11 +18,25 @@ package org.jvalue;
  * A Restriction specifies some type constraint on the allowed values of a value object.
  * It is called restriction in alignment with XML Schema terminology.
  */
-public interface Restriction<T> {
+public abstract class Restriction<T> {
 
 	/**
 	 * 
 	 */
-	public boolean isSatisfiedBy(T value);
-
+	public abstract boolean isSatisfiedBy(T value);
+	
+	/**
+	 * 
+	 */
+	public Restriction<T> and(Restriction<T> other) {
+		return new BooleanRestriction.And<T>(this, other);
+	}
+	
+	/**
+	 * 
+	 */
+	public Restriction<T> or(Restriction<T> other) {
+		return new BooleanRestriction.Or<T>(this, other);
+	}
+	
 }

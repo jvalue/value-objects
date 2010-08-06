@@ -53,5 +53,4 @@ public class NumberType<T extends Comparable<T>> extends SimpleValueType<T> {
 		super(restriction);
 	}
 
-	
 }

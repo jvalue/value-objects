@@ -35,6 +35,7 @@ public abstract class SimpleValueType<T> extends ValueType<T> {
 	/**
 	 * 
 	 */
+	@Override
 	public boolean isValidInstance(T value) {
 		return restriction.isSatisfiedBy(value);
 	}

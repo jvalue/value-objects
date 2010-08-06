@@ -48,6 +48,7 @@ public class QuantityUnitType extends ValueType<QuantityUnit> {
 	/**
 	 * 
 	 */
+	@Override
 	public boolean isValidInstance(QuantityUnit value) {
 		return quantityType.isValidInstance(value.quantity) && unitType.isValidInstance(value.unit);
 	}

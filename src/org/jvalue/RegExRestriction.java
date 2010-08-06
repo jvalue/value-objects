@@ -16,11 +16,10 @@ package org.jvalue;
 
 import java.util.regex.Pattern;
 
-
 /**
  * A Restriction that ensures a given value object has a specific value.
  */
-public class RegExRestriction implements Restriction<String> {
+public class RegExRestriction extends Restriction<String> {
 
 	/**
 	 * 
@@ -44,6 +43,7 @@ public class RegExRestriction implements Restriction<String> {
 	/**
 	 * 
 	 */
+	@Override
 	public boolean isSatisfiedBy(String value) {
 		return pattern.matcher(value).matches();
 	}

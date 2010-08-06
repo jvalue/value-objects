@@ -69,6 +69,7 @@ public class NameType extends ValueType<Name> {
 	/**
 	 * 
 	 */
+	@Override
 	public boolean isValidInstance(Name value) {
 		return nameType.isValidInstance(value.components()); 
 	}

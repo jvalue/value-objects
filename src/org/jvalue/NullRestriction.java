@@ -17,7 +17,7 @@ package org.jvalue;
 /**
  * 
  */
-public class NullRestriction<T> implements Restriction<T> {
+public class NullRestriction<T> extends Restriction<T> {
 	
 	/**
 	 * 
@@ -29,6 +29,7 @@ public class NullRestriction<T> implements Restriction<T> {
 	/**
 	 * 
 	 */
+	@Override
 	public boolean isSatisfiedBy(T value) {
 		return true;
 	}

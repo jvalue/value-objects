@@ -20,7 +20,7 @@ import org.jvalue.Restriction;
  * A StringType captures restrictions on Strings used in value objects.
  */
 public class StringType extends SimpleValueType<String> {
-
+	
 	/**
 	 * 
 	 */
@@ -33,13 +33,6 @@ public class StringType extends SimpleValueType<String> {
 	 */
 	public StringType(Restriction<String> restriction) {
 		super(restriction);
-	}
-	
-	/**
-	 * 
-	 */
-	public boolean isValidInstance(String value) {
-		return restriction.isSatisfiedBy(value);
 	}
 	
 }

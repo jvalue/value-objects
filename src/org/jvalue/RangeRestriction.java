@@ -19,7 +19,7 @@ import org.jvalue.numbers.Range;
 /**
  * A Restriction that ensures a given value falls into the value range specified by the restriction.
  */
-public class RangeRestriction<T extends Comparable<T>> implements Restriction<T> {
+public class RangeRestriction<T extends Comparable<T>> extends Restriction<T> {
 
 	/**
 	 * 
@@ -43,6 +43,7 @@ public class RangeRestriction<T extends Comparable<T>> implements Restriction<T>
 	/**
 	 * 
 	 */
+	@Override
 	public boolean isSatisfiedBy(T value) {
 		return range.includes(value);
 	}

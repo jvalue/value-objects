@@ -17,7 +17,7 @@ package org.jvalue;
 /**
  * A Restriction that ensures a given value object has a specific value.
  */
-public class ExactValueRestriction<T> implements Restriction<T> {
+public class ExactValueRestriction<T> extends Restriction<T> {
 
 	/**
 	 * 
@@ -34,6 +34,7 @@ public class ExactValueRestriction<T> implements Restriction<T> {
 	/**
 	 * 
 	 */
+	@Override
 	public boolean isSatisfiedBy(T value) {
 		return exactValue.equals(value);
 	}

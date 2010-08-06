@@ -24,6 +24,7 @@ import org.junit.runners.*;
 @RunWith(Suite.class)
 @Suite.SuiteClasses( {
 	org.jvalue.ValueTypeTest.class,
+	org.jvalue.BooleanRestrictionTest.class,
 	
 	org.jvalue.date.DateTypeTest.class,
 
